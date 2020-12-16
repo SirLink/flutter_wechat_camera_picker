@@ -420,7 +420,7 @@ class CameraPickerState extends State<CameraPicker> {
     if (isInitialized && !cameraController.value.isTakingPicture) {
       try {
         final String path = '${cacheFilePath}_$currentTimeStamp.jpg';
-        await cameraController.takePicture(path);
+        await cameraController.takePicture();
         takenPictureFilePath = path;
 
         final AssetEntity entity = await CameraPickerViewer.pushToViewer(
@@ -493,7 +493,7 @@ class CameraPickerState extends State<CameraPicker> {
     final String filePath = '${cacheFilePath}_$currentTimeStamp.mp4';
     takenVideoFilePath = filePath;
     if (!cameraController.value.isRecordingVideo) {
-      cameraController.startVideoRecording(filePath).then((dynamic _) {
+      cameraController.startVideoRecording().then((dynamic _) {
         if (mounted) {
           setState(() {});
         }
